@@ -1,180 +1,10 @@
 $font-family: system-ui, -apple-system, sans-serif;
-$link-color: #0080ff;
-$link-color-light: #6eb7ff;
-$light-blue: #00a8d0;
-$light-blue2: #41d3e9;
-$light-blue3: #eff7ff;
-$very-light-blue: #d8ecff;
-$sub-white: #f4f5f7;
-$sub-white2: #e0e0e0;
-$sub-white3: #f5f5f5;
-$sub-white4: #fafafa;
-$sub-white5: #eee;
-$sub-white6: #f5f5f6;
-$color-grey-light: #9e9e9e;
+$text: #2c3e50;
 $white: #fff;
-$white2: #fff7eb;
-$white3: #eceeef;
-$white4: #f6f7f8;
-$white5: #edeef1;
-$white6: #f8f8f8ff;
-$white-medium: #f8fbff;
-$white-medium2: #fff5f8;
-$white-medium3: #f9fafa;
-$white-medium4: #f7fbff;
-$white-medium5: #eaedf0;
-$white-medium6: #f7f7f8;
-$white-medium7: #fdfdfd;
-$light-white: #e5f2fe;
-$light-white2: #cde6fd;
-$light-white3: #f1f3f4;
-$light-white4: #e0efff;
-$light-white5: #fcfcfc;
-$light-white6: #ebedef;
-$light-white7: #fafbfb;
-$very-light-white: #f6f7f7;
-$very-light-white2: #f9f9f9;
-$very-light-white3: #d8d8d8;
-$very-light-white4: #e1e1e1;
-$very-light-white5: #fffcf7;
-$very-light-white6: #dddddd;
-$very-light-white7: #f0f7fe;
-$yellow: #9e770a;
-$sub-yellow: #ffcf51;
-$sub-yellow2: #d9ac36;
-$light-yellow: #f8e4c1;
-$light-yellow2: #fffcf7;
+$sub-white: #f4f5f7;
 $black: #000;
-$sub-black: #111;
-$red: #d85b00;
-$light-red: #f44f7b;
-$base-red: #ff0000;
-$fail-red: #db0042;
-$sub-red: #cb223c;
-$sub-red2: #e10000;
-$sub-red3: #d0011b;
-$sub-red4: #ea053b;
-$sub-red5: #af143e;
-$dark-red: #6f0022;
-$light-red: #fa5252;
-$light-red2: #e40c41;
-$light-red3: #df0000;
-$pink: #ffebeb;
-$green: #45980e;
-$green-text: #009c1b;
-$sub-green: #5ead4b;
-$sub-green2: #417505;
-$sub-green3: #235900;
-$sub-green4: #48a200;
-$sub-green5: #00a035;
-$green-sign: #2f7700;
-$light-green: #64b82c;
-$light-green2: #00ac00;
-$light-green3: #5fd05f;
-$light-green4: #44db5e;
-$light-green5: #2eba46;
-$blue: #006eff;
-$blue2: #417bb4;
-$blue3: #44a2ff;
-$blue4: #41b6ff;
-$blue5: #2f89ff;
-$blue6: #3d79c8;
-$blue7: #4474b4;
-$blue8: #0062c4;
-$blue-medium: #0094dd;
-$sub-blue: #0d72d7;
-$sub-blue2: #46bdfa;
-$sub-blue3: #4681c2;
-$sub-blue4: #2aafff;
-$sub-blue5: #00274d;
-$sub-blue6: #0080ff3f;
-$sub-blue7: #0080ff33;
-$sub-blue8: #305689;
-$dark-blue: #0069d100;
-$dark-blu2: #0033533f;
-$dark-blu3: #0014251e;
-$dark-blu4: #00131f33;
-$dark-blu5: #000f1e3f;
-$dark-blu6: #000b2b26;
-$dark-blu7: #043a67;
-$very-dark-blue: #181c20;
-$very-dark-blue2: #000b2211;
-$very-dark-blue3: #081531;
-$very-dark-blue4: #181c2019;
-$very-dark-blue5: #00162433;
-$very-dark-blue6: #000c1426;
-$very-dark-purple: #01002519;
-$very-dark-purple2: #05011526;
-$very-dark-purple3: #00111fff;
-$very-dark-purple4: #00010833;
-$very-dark-purple5: #0400100c;
-$very-dark-purple6: #001f47;
-$dark: #04000e;
-$dark2: #000915;
-$dark3: #181c20ff;
-$bg-grey: #e3e5e7;
-$grey-icon: #7a8893;
-$grey-icon2: #9eaab3;
-$grey-text: #5f6c76;
-$sub-gray: #555e66;
-$sub-grey2: $grey-icon;
-$sub-grey3: #9ca5ad;
-$sub-grey4: #727d85;
-$sub-grey5: #5f6c76;
-$light-grey: $grey-text;
-$light-grey2: #fbfbfb;
-$light-grey3: #969696;
-$light-grey4: #ccc;
-$light-grey5: #abbbc8;
-$light-grey6: #9ba7b1;
-$medium-grey: #b0b9c0;
-$medium-grey2: #e8ebee;
-$medium-grey3: #5d7580;
-$very-light-grey: #eeeff0;
-$very-light-gre2: #e5e5e5;
-$very-light-gre3: #dadada;
-$very-light-gre4: #c4c4c4;
-$very-light-gre5: #979797;
-$dark-grey: #424242;
-$dark-grey2: #5e6972;
-$dark-grey3: #333;
-$dark-grey4: #8c98a026;
-$very-dark-grey: #616161;
-$very-dark-grey2: #464e55;
-$primary-text-color: #353d43;
-$primary-text-color2: #353c43;
-$color-hover: #f4f5f7;
-$color-mobile-hover: #e9e9ec;
-$color-hover2: #f1f1f3;
-$color-border: #d5dade;
-$color-border-light: #e1e5e7;
-$color-border-dark: #b7c0c7;
-$color-gold: #f5a623;
-$color-warning: #f44336;
-$color-overlay: rgba(#000915, 0.45);
-$color-overlay-dark: rgba(#0f386c, 0.9);
-$field_input_box_shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
-$popup_box_shadow: 0 9px 20px 3px rgba(#000b22, 0.4);
-$popup_border-radius: 4px;
-$color-hidden-input-hover: #ebebf1;
-$table-row-color-hover: #f8f8f9;
-$table-row-color-visited: #f1f2f3;
-$table-cell-color-visited: #e9e9ec;
-$popup-left-bg-color: #f8f8f9;
-$button-shadow: #003353;
-$button-bg: #0061df;
-$light-button-bg: #3b90ff;
-$button-delete: #d0021b;
-$table-row-color-selected: $light-blue3;
-$kanban-column-width: 330;
-$kanban-column-hover: #fbfbfb;
-$kanban-card-margin: 5;
-$main-blue-color: #0080ff;
-$mainmenu-bg: #0069d1;
-$ios-ease: cubic-bezier(0.36, 0.66, 0.04, 1);
-$income-color: #2f7700;
-$outcome-color: $fail-red;
-$warn-red: $button-delete;
+$teal: #218e84;
+
 $scrollbar-color: rgba(103, 111, 117, 0.4);
 $scrollbar-width: 11px;
 $table-header-color: #fbfbfb;
@@ -185,15 +15,12 @@ $medium: 500;
 $bold: 600;
 $bold-large: 700;
 
-$row-height-large: 60px;
-$row-height-medium: 50px;
-$row-height-small: 40px;
-
-$z-index-max: 2003;
-$z-index-notifications: $z-index-max + 1;
-$z-index-gallery: 2007;
-
-@mixin scrollbar($y: true, $x: false, $onlyOnHover: true, $width: $scrollbar-width) {
+@mixin scrollbar(
+  $y: true,
+  $x: false,
+  $onlyOnHover: true,
+  $width: $scrollbar-width
+) {
   @if $y {
     overflow-y: auto;
   }
@@ -230,52 +57,4 @@ $z-index-gallery: 2007;
       }
     }
   }
-}
-
-@mixin hover-shadow-properties($shadow) {
-  transition: opacity 150ms ease-in;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  content: '';
-  box-shadow: $shadow;
-  pointer-events: none;
-  border-radius: inherit;
-  display: block;
-  left: 0;
-  top: 0;
-}
-
-@mixin hover-shadow($shadow: 0 1em 1.8em 0 rgba($button-shadow, 0.15), $pseudo-element: before) {
-  position: relative;
-
-  @if $pseudo-element == 'before' {
-    &::before {
-      @include hover-shadow-properties($shadow);
-    }
-    &:hover:not(:disabled) {
-      &::before {
-        opacity: 1;
-      }
-    }
-  }
-
-  @if $pseudo-element == 'after' {
-    &::after {
-      @include hover-shadow-properties($shadow);
-    }
-    &:hover:not(:disabled) {
-      &::after {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-@mixin line-clamp($columnNumber) {
-  display: -webkit-box;
-  -webkit-line-clamp: $columnNumber;
-  /*! autoprefixer: ignore next */
-  -webkit-box-orient: vertical;
 }

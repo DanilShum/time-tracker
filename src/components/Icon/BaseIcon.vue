@@ -1,63 +1,30 @@
 <template>
-  <component
-    :is="iconComponent"
-    class="base-icon"
-    :class="{
-      'base-icon_default-color': !color,
-      'base-icon_flip-x': flipX,
-      'base-icon_flip-y': flipY,
-    }"
-    :style="{ color: color || null }"
-  />
+  <svg-icon v-if="path" :path="path" />
 </template>
 
 <script>
 import { defineComponent } from "vue";
 
+import { mdiAccount } from "@mdi/js";
+import SvgIcon from "vue3-icon";
+
 export default defineComponent({
-  name: "BaseIcon",
+  components: { SvgIcon },
   props: {
     name: {
       type: String,
       required: true,
     },
-    color: {
-      type: String,
-      default: "",
-    },
-    flipX: {
-      type: Boolean,
-      default: false,
-    },
-    flipY: {
-      type: Boolean,
-      default: false,
-    },
+  },
+  setup() {
+    return {
+      user: mdiAccount,
+    };
   },
   computed: {
-    iconComponent() {
-      const file = `${this.name}.svg`;
-      console.log(require(`@/assets/icons/${file}`));
-      return require(`@/assets/icons/${file}`).default;
+    path() {
+      return this[this.name];
     },
   },
 });
 </script>
-
-<style lang="scss">
-.base-icon {
-  flex-shrink: 0;
-
-  &.base-icon_default-color {
-    color: inherit;
-  }
-
-  &.base-icon_flip-x {
-    transform: scaleX(-1);
-  }
-
-  &.base-icon_flip-y {
-    transform: scaleY(-1);
-  }
-}
-</style>

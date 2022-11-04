@@ -1,22 +1,35 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-
-    <base-icon name="account" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div class="page">
+      <base-menu />
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "../components/HelloWorld.vue"; // @ is an alias to /src
-import BaseIcon from "../components/Icon/BaseIcon.vue";
+import BaseMenu from "@/components/menu/BaseMenu.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: {
-    HelloWorld,
-    BaseIcon,
-  },
+  components: { BaseMenu },
 });
 </script>
+<style lang="scss">
+.home {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  background-color: $sub-white;
+}
+</style>
