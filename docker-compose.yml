@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+      target: developer
+    volumes:
+      - ./:/app
+      - ./docker/entrypoint.sh:/entrypoint.sh
+    ports:
+      - '8041:8080'
