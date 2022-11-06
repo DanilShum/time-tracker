@@ -11,21 +11,19 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "sourceMap": true,
-    "baseUrl": "./time-tracker",
+    "baseUrl": ".",
     "types": [
       "webpack-env"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
   },
   "include": [
     "src/**/*.ts",
@@ -35,6 +33,6 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "time-tracker/node_modules"
+    "node_modules", "dist"
   ]
 }
