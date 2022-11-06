@@ -17,10 +17,10 @@ import BaseIcon from "@/components/Icon/BaseIcon";
 export default {
   name: "BaseMenu",
   components: { BaseIcon },
-  data: () => ({
+  data: (vm) => ({
     menuItems: [
       {
-        name: "Часы",
+        name: vm.$t("Hours"),
         icon: "user",
         id: "calendar",
         to: { name: "calendar" },
