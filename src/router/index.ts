@@ -16,6 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "home",
     component: HomeView,
     meta: { requiresAuth: true },
+    redirect: "/calendar",
     children: [
       {
         path: "/calendar",
