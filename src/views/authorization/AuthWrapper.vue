@@ -1,7 +1,10 @@
 <template>
   <div class="auth-wrapper">
     <header class="auth-wrapper__header">
-      <base-icon name="clock" :size="52" />
+      <div class="auth-wrapper__logo">
+        <base-icon name="clock" :size="52" />
+        <p class="ml-2">TeamTime</p>
+      </div>
       <div>
         <button
           v-for="lang in $i18n.availableLocales"
@@ -31,8 +34,8 @@
           <footer class="auth-wrapper__content-footer">
             <div class="auth-wrapper__footer-buttons">
               <slot name="footer" />
+              <button v-text="'dfgdfgdf'" type="submit" />
             </div>
-            <slot name="footer-bottom" />
           </footer>
         </form>
       </div>
@@ -83,13 +86,23 @@ export default defineComponent({
   justify-content: center;
 }
 .auth-wrapper__content {
-  width: 460px;
+  width: 500px;
   display: flex;
   align-items: center;
   padding: 40px;
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 9px 40px 3px rgb($teal, 0.1);
-  background-color: #fff;
+  background-color: $white;
+}
+.auth-wrapper__logo {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 18px;
+    font-weight: $medium;
+    letter-spacing: 1.05px;
+  }
 }
 </style>

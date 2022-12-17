@@ -1,4 +1,8 @@
 Login: Login
 Hours: Hours
 Email: Email
+email: Email
 Password: Password
+password: Password
+required: The field "@:{property}" is required.
+minLength: The "@:{property}" field has a value of '{model}', but it must have a min length of {min}.

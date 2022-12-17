@@ -1,12 +1,11 @@
 import { createI18n, DefineLocaleMessage, I18n } from "vue-i18n";
-import { App } from "vue";
 
 type Lang = "en" | "ru";
 
 const MAIN_LANG = "en";
 const lang = localStorage.getItem("lang") || MAIN_LANG;
 
-export default class Localization {
+class Localization {
   i18n: I18n<{}, {}, {}, Lang, false>;
 
   constructor() {
@@ -75,21 +74,14 @@ export default class Localization {
     return { messages };
   }
 
-  setLocale(lang: Lang): void {
+  setLocale = (lang: Lang): void => {
     this.i18n.global.locale.value = lang;
     localStorage.setItem("lang", lang);
     document.getElementsByTagName("html")[0].lang = lang;
-  }
-
-  static install(app: App) {
-    const localization = new Localization();
-
-    app.use(localization.i18n);
-
-    app.config.globalProperties.$setLocale = (lang: Lang) =>
-      localization.setLocale(lang);
-  }
+  };
 }
+
+export const { i18n, setLocale } = new Localization();
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
