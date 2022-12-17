@@ -5,10 +5,14 @@
       'base-input_has-value': hasValue,
     }"
   >
-    <fieldset class="base-input__fieldset">
-      <legend class="base-input__legend" v-if="label" v-text="label" />
-      <label class="base-input__label">
-        <span v-if="label" class="base-input__label-text" v-text="label" />
+    <fieldset class="base-input__fieldset d-flex d-flex_a-center rounded-1">
+      <legend class="base-input__legend ml-2" v-if="label" v-text="label" />
+      <label class="base-input__label d-flex">
+        <span
+          v-if="label"
+          class="base-input__label-text rounded-1"
+          v-text="label"
+        />
         <slot name="input">
           <input
             ref="input"
@@ -18,12 +22,12 @@
             :autofocus="autofocus"
             :disabled="disabled"
             v-bind="$attrs"
-            class="base-input__field"
+            class="base-input__field rounded-1"
             @input="input($event.target.value)"
             @change="change($event.target.value)"
           />
         </slot>
-        <div class="base-input__value">
+        <div class="base-input__value d-flex rounded-1">
           <slot name="value">
             <div v-text="modelValue" />
           </slot>
@@ -97,13 +101,10 @@ export default defineComponent({
   margin: 0;
   padding: 0;
   position: relative;
-  display: flex;
-  align-items: center;
   width: 100%;
   height: 48px;
   border: 1px solid transparent;
   background-color: rgba($grey, 0.05);
-  border-radius: 4px;
   box-sizing: border-box;
   appearance: none;
   transition: background-color 200ms ease-in;
@@ -121,7 +122,6 @@ export default defineComponent({
 
 .base-input__label {
   position: relative;
-  display: flex;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -137,9 +137,8 @@ export default defineComponent({
   bottom: 0;
   max-width: 100%;
   height: 100%;
-  border-radius: 4px;
   line-height: 14px;
-  color: $text;
+  color: $base-grey;
   user-select: none;
   z-index: 1;
   transform: translate3d(0, 0, 0) scale(1);
@@ -152,14 +151,13 @@ export default defineComponent({
 
   .base-input:focus-within &,
   .base-input_has-value & {
-    color: $text;
+    color: $base-grey;
     transform: translate3d(0, -50%, 0) scale(0.92);
   }
 }
 .base-input__legend {
   opacity: 0;
   height: 0;
-  margin-left: 10px;
 }
 
 .base-input__field {
@@ -171,7 +169,6 @@ export default defineComponent({
   margin: 0;
   padding: 10px 15px;
   box-sizing: border-box;
-  border-radius: 4px;
   font: inherit;
   font-size: 13px;
   line-height: 16px;
@@ -203,7 +200,7 @@ export default defineComponent({
     &:first-line {
       font-family: $font-family !important;
       font-size: 13px !important;
-      color: $text !important;
+      color: $base-grey !important;
     }
   }
 }
@@ -213,12 +210,10 @@ export default defineComponent({
   top: 0;
   right: 0;
   bottom: 0;
-  display: flex;
   width: 100%;
   height: 100%;
   padding: 10px 15px;
   box-sizing: border-box;
-  border-radius: 4px;
   font-size: 13px;
   line-height: 16px;
   opacity: 1;

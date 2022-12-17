@@ -19,11 +19,11 @@ button {
   font-size: 13px;
   font-weight: $normal;
   line-height: 17px;
-  color: $text;
+  color: $base-grey;
 }
 
 input::placeholder {
-  color: $text;
+  color: $base-grey;
   font-family: $font-family;
   font-size: 13px;
   text-align: left;
