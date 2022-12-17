@@ -92,3 +92,42 @@ h1 {
   font-size: 19px;
   line-height: normal;
 }
+
+.d-flex {
+  display: flex;
+}
+.d-flex_j-end {
+  justify-content: flex-end;
+}
+.d-flex_j-start {
+  justify-content: flex-start;
+}
+.d-flex_j-center {
+  justify-content: center;
+}
+.d-flex_j-between {
+  justify-content: space-between;
+}
+.d-flex_a-end {
+  align-items: flex-end;
+}
+.d-flex_a-start {
+  align-items: flex-start;
+}
+.d-flex_a-center {
+  align-items: center;
+}
+
+.rounded-1 {
+  border-radius: 4px;
+}
+.rounded-2 {
+  border-radius: 8px;
+}
+.rounded-3 {
+  border-radius: 12px;
+}
+.rounded-4 {
+  border-radius: 16px;
+}
+

@@ -12,6 +12,15 @@ const routes: Array<RouteRecordRaw> = [
     meta: { guest: true, title: "Login" },
   },
   {
+    path: "/registration",
+    name: "registration",
+    component: () =>
+      import(
+        /* webpackChunkName: "registration" */ "../views/authorization/SignupView.vue"
+      ),
+    meta: { guest: true, title: "Sign up" },
+  },
+  {
     path: "/",
     name: "home",
     component: HomeView,

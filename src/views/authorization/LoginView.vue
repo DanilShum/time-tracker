@@ -1,5 +1,10 @@
 <template>
-  <auth-wrapper class="login-view" :title="$t('Login')" @submit="submit">
+  <auth-wrapper
+    class="login-view"
+    :title="$t('Login')"
+    :submit-text="$t('Login')"
+    @submit="submit"
+  >
     <base-input
       class="mt-3"
       v-model="email"
@@ -21,6 +26,16 @@
       v-if="errorByType['password'].message"
       :text="errorByType['password'].message"
     />
+
+    <template #footer>
+      <base-button
+        class="mr-2"
+        :text="$t('SignUp')"
+        secondary
+        color="teal"
+        :to="{ name: 'registration' }"
+      />
+    </template>
   </auth-wrapper>
 </template>
 
@@ -32,22 +47,21 @@ import { ErrorObject, useVuelidate } from "@vuelidate/core";
 import {
   required,
   minLength,
-  ErrorByTypeObject,
-  ValidateDecorator,
+  VErrorObject,
+  getEmptyErrors,
 } from "@/helpers/validate";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { keyBy } from "lodash-es";
+import BaseButton from "@/components/button/BaseButton.vue";
 
 const VALIDATE_FIELDS = Object.freeze({
   email: "email",
   password: "password",
 });
 
-const IValidate = new ValidateDecorator({ fields: VALIDATE_FIELDS });
-
 export default defineComponent({
   name: "LoginView",
-  components: { ErrorMessage, BaseInput, AuthWrapper },
+  components: { BaseButton, ErrorMessage, BaseInput, AuthWrapper },
   setup: () => ({
     v$: useVuelidate(),
   }),
@@ -70,9 +84,9 @@ export default defineComponent({
         };
       });
     },
-    errorByType(): ErrorByTypeObject {
+    errorByType(): VErrorObject {
       return {
-        ...keyBy(IValidate.emptyErrors, "$property"),
+        ...keyBy(getEmptyErrors(VALIDATE_FIELDS), "$property"),
         ...keyBy(this.errors, "$property"),
       };
     },
