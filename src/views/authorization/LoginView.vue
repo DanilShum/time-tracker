@@ -32,8 +32,8 @@ import { ErrorObject, useVuelidate } from "@vuelidate/core";
 import {
   required,
   minLength,
-  ErrorByTypeObject,
-  ValidateDecorator,
+  VErrorObject,
+  getEmptyErrors,
 } from "@/helpers/validate";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import { keyBy } from "lodash-es";
@@ -42,8 +42,6 @@ const VALIDATE_FIELDS = Object.freeze({
   email: "email",
   password: "password",
 });
-
-const IValidate = new ValidateDecorator({ fields: VALIDATE_FIELDS });
 
 export default defineComponent({
   name: "LoginView",
@@ -70,9 +68,9 @@ export default defineComponent({
         };
       });
     },
-    errorByType(): ErrorByTypeObject {
+    errorByType(): VErrorObject {
       return {
-        ...keyBy(IValidate.emptyErrors, "$property"),
+        ...keyBy(getEmptyErrors(VALIDATE_FIELDS), "$property"),
         ...keyBy(this.errors, "$property"),
       };
     },
