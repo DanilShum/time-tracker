@@ -1,14 +1,14 @@
 // MARGIN
-.m1 {
+.m-1 {
   margin: 4px;
 }
-.m2 {
+.m-2 {
   margin: 8px;
 }
-.m3 {
+.m-3 {
   margin: 12px;
 }
-.m4 {
+.m-4 {
   margin: 16px;
 }
 
@@ -30,29 +30,59 @@
 // MARGIN-BOTTOM
 
 .mb-1 {
-  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .mb-2 {
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 .mb-3 {
-  margin-top: 12px;
+  margin-bottom: 12px;
 }
 .mb-4 {
-  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+// MARGIN-LEFT
+
+.ml-1 {
+  margin-left: 4px;
+}
+.ml-2 {
+  margin-left: 8px;
+}
+.ml-3 {
+  margin-left: 12px;
+}
+.ml-4 {
+  margin-left: 16px;
+}
+
+// MARGIN-RIGHT
+
+.mr-1 {
+  margin-right: 4px;
+}
+.mr-2 {
+  margin-right: 8px;
+}
+.mr-3 {
+  margin-right: 12px;
+}
+.mr-4 {
+  margin-right: 16px;
 }
 
 // PADDING
-.p1 {
+.p-1 {
   padding: 4px;
 }
-.p2 {
+.p-2 {
   margin: 8px;
 }
-.p3 {
+.p-3 {
   margin: 12px;
 }
-.p4 {
+.p-4 {
   margin: 16px;
 }
 

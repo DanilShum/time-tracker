@@ -2,7 +2,7 @@ const { defineConfig } = require("@vue/cli-service");
 const path = require("path");
 
 module.exports = defineConfig({
-  transpileDependencies: true,
+  transpileDependencies: ["lodash-es"],
   chainWebpack: (config) => {
     config.module
       .rule("yaml")
