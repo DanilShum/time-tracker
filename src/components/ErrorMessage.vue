@@ -9,7 +9,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ErrorMessage",
-  components: {},
   props: {
     text: {
       type: String,
