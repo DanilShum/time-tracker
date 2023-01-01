@@ -3,12 +3,32 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: $font-family;
+@import "./styles/style";
+
+* {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: $text;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: $font-family;
+  font-size: 13px;
+  font-weight: $normal;
+  line-height: 17px;
+  color: $base-grey;
+}
+
+input::placeholder {
+  color: $base-grey;
+  font-family: $font-family;
+  font-size: 13px;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {

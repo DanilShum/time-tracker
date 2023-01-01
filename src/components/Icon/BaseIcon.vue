@@ -3,28 +3,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 
 import { mdiAccount } from "@mdi/js";
 import { mdiClockTimeThree } from "@mdi/js";
 import SvgIcon from "vue3-icon";
 
-const ICONS: { [key: string]: string } = {
+const ICONS = {
   user: mdiAccount,
   clock: mdiClockTimeThree,
 };
 
-const ICONS_KEYS = Object.keys(ICONS);
+const ICON_KEYS = Object.keys(ICONS);
+type Icon = keyof typeof ICONS;
 
 export default defineComponent({
   components: { SvgIcon },
   props: {
     name: {
-      type: String,
+      type: String as PropType<Icon>,
       required: true,
-      validator(value: string) {
-        return ICONS_KEYS.includes(value);
-      },
+      validator: (value: Icon) => ICON_KEYS.includes(value),
     },
     size: {
       type: Number,
