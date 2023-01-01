@@ -21,7 +21,6 @@
       :label="$t('Password')"
       model-type="password"
     />
-
     <error-message
       v-if="errorByType['password'].message"
       :text="errorByType['password'].message"
@@ -43,15 +42,9 @@
 import { defineComponent } from "vue";
 import AuthWrapper from "@/views/authorization/AuthWrapper.vue";
 import BaseInput from "@/components/fields/BaseInput.vue";
-import { ErrorObject, useVuelidate } from "@vuelidate/core";
-import {
-  required,
-  minLength,
-  VErrorObject,
-  getEmptyErrors,
-} from "@/helpers/validate";
+import { useVuelidate } from "@vuelidate/core";
+import { Validate } from "@/helpers/validate";
 import ErrorMessage from "@/components/ErrorMessage.vue";
-import { keyBy } from "lodash-es";
 import BaseButton from "@/components/button/BaseButton.vue";
 
 const VALIDATE_FIELDS = Object.freeze({
@@ -68,27 +61,19 @@ export default defineComponent({
   data: () => ({ email: "", password: "" }),
   validations() {
     return {
-      email: { required: required },
+      email: { required: Validate.required },
       password: {
-        required: required,
-        minLength: minLength(6),
+        required: Validate.required,
+        minLength: Validate.minLength(6),
       },
     };
   },
   computed: {
-    errors(): ErrorObject[] {
-      return this.v$.$errors.map((error) => {
-        return {
-          ...error,
-          message: String(error.$message),
-        };
-      });
+    errors() {
+      return Validate.getErrors(this.v$.$errors);
     },
-    errorByType(): VErrorObject {
-      return {
-        ...keyBy(getEmptyErrors(VALIDATE_FIELDS), "$property"),
-        ...keyBy(this.errors, "$property"),
-      };
+    errorByType() {
+      return Validate.getErrorByType(this.errors, VALIDATE_FIELDS);
     },
   },
   methods: {

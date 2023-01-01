@@ -5,5 +5,8 @@ Email: Email
 email: Email
 Password: Пароль
 password: Пароль
+Confirm password: Подтвердить пароль
+confirmPassword: Подтвердить пароль
 required: Поле "@:{property}" обязательно.
 minLength: Поле "@:{property}" содержит значение '{model}', но оно короче {min} символов.
+sameAs: Поле "@:{property}" должно совпадать с полем "@:{equalTo}".
