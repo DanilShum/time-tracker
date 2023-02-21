@@ -79,6 +79,7 @@ export default defineComponent({
   methods: {
     async submit() {
       const result = await this.v$.$validate();
+
       if (!result) {
         // notify user form is invalid
         return;
