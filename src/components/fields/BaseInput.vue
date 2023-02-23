@@ -160,18 +160,22 @@ export default defineComponent({
   height: 0;
 }
 
+.base-input__value,
 .base-input__field {
-  display: block;
   width: 100%;
   height: 100%;
-  border: 0;
-  outline: 0;
-  margin: 0;
   padding: 10px 15px;
   box-sizing: border-box;
   font: inherit;
   font-size: 13px;
   line-height: 16px;
+}
+
+.base-input__field {
+  display: block;
+  border: 0;
+  outline: 0;
+  margin: 0;
   background: none;
   appearance: none;
   opacity: 0;
@@ -210,12 +214,6 @@ export default defineComponent({
   top: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  font-size: 13px;
-  line-height: 16px;
   opacity: 1;
   pointer-events: none;
   align-items: center;
