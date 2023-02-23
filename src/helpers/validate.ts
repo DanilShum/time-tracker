@@ -3,8 +3,6 @@ import * as validators from "@vuelidate/validators";
 import { ErrorObject, useVuelidate, Validation } from "@vuelidate/core";
 import { keyBy } from "lodash-es";
 import { Ref } from "vue-demi";
-import { computed, reactive } from "vue";
-import { ComputedRef, UnwrapNestedRefs } from "@vue/reactivity";
 
 const { createI18nMessage } = validators;
 const withI18nMessage = createI18nMessage({ t: i18n.global.t.bind(i18n) });
@@ -33,17 +31,15 @@ export const VRules = {
 };
 
 export class Validate<R, S extends Record<keyof R, any>> {
-  private validate: Ref<Validation<R, any>>;
-  rules: ComputedRef<R>;
-  state: UnwrapNestedRefs<S>;
+  private validate: Ref<Validation<R, R>>;
+  state: S;
 
   constructor(rules: R, state: S) {
-    this.rules = computed(() => rules);
-    this.state = reactive(state);
-    this.validate = useVuelidate(this.rules, this.state);
+    this.state = state;
+    this.validate = useVuelidate(rules, state);
   }
 
-  get v$(): Validation<R, any> {
+  get v$(): Validation<R, R> {
     return this.validate.value;
   }
 
