@@ -1,14 +1,14 @@
 import { api } from "@/plugins/axios";
 import { Id } from "@/service/types";
 
-export interface Repository {
+export interface IRequests {
   fetch: (params: any) => Promise<any>;
   create: (params: any) => Promise<any>;
   update: <Response, P>(params: P) => Promise<any>;
   remove: (id: Id) => Promise<any>;
 }
 
-export default class Requests implements Repository {
+export default class Requests implements IRequests {
   protected url: string;
   protected http = api;
 
@@ -39,7 +39,7 @@ export default class Requests implements Repository {
   }
   remove<Response>(id: Id) {
     return this.http.request<Response>({
-      method: "patch",
+      method: "delete",
       url: `${this.url}/${id}`,
     });
   }
