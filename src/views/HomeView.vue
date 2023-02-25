@@ -1,9 +1,8 @@
 <template>
-  <div class="home">
-    <div class="page">
-      <base-menu />
-      <router-view />
-    </div>
+  <div class="page">
+    <base-menu />
+
+    <router-view class="page-view" />
   </div>
 </template>
 
@@ -17,19 +16,18 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.home {
+.page {
   display: flex;
   height: 100vh;
   max-height: 100vh;
   min-height: 500px;
   overflow: hidden;
   max-width: 100%;
-}
-.page {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
-  height: 100%;
   background-color: $sub-white;
+}
+.page-view {
+  width: 100%;
+  overflow: hidden;
 }
 </style>
