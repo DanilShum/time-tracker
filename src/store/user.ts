@@ -1,4 +1,5 @@
 import { Service, ServiceCollection } from "@/service/service";
+import { reactive } from "vue";
 
 interface IUser {
   readonly id: string | number;
@@ -16,13 +17,16 @@ interface IUsers {
 
 export class userService extends Service<IUser> {
   constructor() {
-    super("user", {
-      id: "",
-      name: "",
-      created_at: "",
-      isActive: false,
-      email: "",
-    });
+    super(
+      "user",
+      reactive({
+        id: "",
+        name: "",
+        created_at: "",
+        isActive: false,
+        email: "",
+      })
+    );
   }
 
   get user(): IUser {
@@ -32,11 +36,14 @@ export class userService extends Service<IUser> {
 
 export class userServices extends ServiceCollection<IUser, IUsers> {
   constructor() {
-    super("users", {
-      list: [],
-      loading: false,
-      param: "TEST",
-    });
+    super(
+      "users",
+      reactive({
+        list: [],
+        loading: false,
+        param: "TEST",
+      })
+    );
   }
   updateParam(param = "UPDATE") {
     this.requests.update({ param });

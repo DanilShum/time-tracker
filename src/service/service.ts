@@ -1,23 +1,20 @@
 import Requests from "@/service/requests";
 import { Id, Item } from "@/service/types";
-import { UnwrapRef } from "vue";
 
 import { Storage } from "@/service/storage";
 import { addToList, removeFromList, replaceInList } from "@/helpers/mutations";
 import { keyBy, map } from "lodash-es";
 
-// TODO Выпилить файлик entity.js
-
 interface ICollection<DTO> {
-  list: UnwrapRef<DTO[]>;
+  list: DTO[];
 }
 
 interface IResEntity<DTO> {
-  data: UnwrapRef<DTO>;
+  data: DTO;
 }
 
 interface IResEntities<DTO> {
-  data: UnwrapRef<DTO[]>;
+  data: DTO[];
 }
 
 export class Service<DTO extends object> {
@@ -34,7 +31,7 @@ export class Service<DTO extends object> {
     this.storage.set(data);
     return data;
   }
-  async update(data: Partial<UnwrapRef<DTO>>): Promise<any> {
+  async update(data: Partial<DTO>): Promise<any> {
     const res = await this.requests.update(data);
     this.storage.update(data);
 
@@ -54,7 +51,7 @@ export class ServiceCollection<DTO extends Item, C extends ICollection<DTO>> {
     this.storage = new Storage(data);
   }
 
-  get state(): UnwrapRef<C> {
+  get state(): C {
     return this.storage.state;
   }
 
@@ -75,16 +72,16 @@ export class ServiceCollection<DTO extends Item, C extends ICollection<DTO>> {
     return data;
   }
 
-  setList(list: UnwrapRef<DTO[]>): void {
+  setList(list: DTO[]): void {
     this.storage.setByKey("list", list);
   }
-  addItem(item: UnwrapRef<DTO>): void {
-    addToList(this.storage.state.list, item as typeof this.list[0]);
+  addItem(item: DTO): void {
+    addToList(this.storage.state.list, item);
   }
-  removeItem(item: UnwrapRef<DTO>) {
-    removeFromList(this.storage.state.list, item as typeof this.list[0]);
+  removeItem(item: DTO) {
+    removeFromList(this.storage.state.list, item);
   }
-  replaceItem(item: UnwrapRef<DTO>) {
-    replaceInList(this.storage.state.list, item as typeof this.list[0]);
+  replaceItem(item: DTO) {
+    replaceInList(this.storage.state.list, item);
   }
 }
