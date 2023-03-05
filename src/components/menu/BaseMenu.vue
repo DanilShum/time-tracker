@@ -1,17 +1,3 @@
-<template>
-  <div class="base-menu">
-    <router-link
-      class="base-menu__item"
-      :class="{ 'base-menu__item_active': menu.id === $route.name }"
-      v-for="menu in menuItems"
-      :key="menu.id"
-      :to="menu.to"
-    >
-      <base-icon :name="menu.icon" />
-    </router-link>
-  </div>
-</template>
-
 <script>
 import BaseIcon from "@/components/Icon/BaseIcon";
 export default {
@@ -30,46 +16,18 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$size: 72px;
-
-.base-menu {
-  align-items: center;
-  background-color: $teal;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-width: $size;
-  min-width: $size;
-  position: relative;
-}
-.base-menu__item {
-  position: relative;
-  cursor: pointer;
-  min-height: $size;
-  width: $size;
-  height: $size;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  color: $white !important;
-
-  a {
-    min-height: $size;
-    width: $size;
-    height: $size;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
-
-  &.base-menu__item_active,
-  &:not(.menu__item_logo):hover {
-    color: $white;
-  }
-}
-</style>
+<template>
+  <div
+    class="relative box-border flex h-full w-16 min-w-16 max-w-16 flex-col items-center bg-teal-600"
+  >
+    <router-link
+      class="m-o flex-center relative h-16 min-h-16 w-16 cursor-pointer bg-transparent p-0 text-white hover:bg-white/20"
+      :class="{ 'bg-white/10': menu.id === $route.name }"
+      v-for="menu in menuItems"
+      :key="menu.id"
+      :to="menu.to"
+    >
+      <base-icon :name="menu.icon" />
+    </router-link>
+  </div>
+</template>

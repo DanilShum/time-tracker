@@ -1,29 +1,69 @@
+<script lang="ts">
+import { defineComponent, reactive } from "vue";
+import AuthWrapper from "@/views/authorization/AuthWrapper.vue";
+import BaseInput from "@/components/fields/BaseInput.vue";
+import { Validate, VRules } from "@/helpers/validate";
+import ErrorMessage from "@/components/ErrorMessage.vue";
+import BaseButton from "@/components/button/BaseButton.vue";
+
+const RULES = {
+  email: { required: VRules.required },
+  password: {
+    required: VRules.required,
+    minLength: VRules.minLength(6),
+  },
+};
+
+export default defineComponent({
+  name: "LoginView",
+  components: { BaseButton, ErrorMessage, BaseInput, AuthWrapper },
+  setup() {
+    const state = reactive({ email: "", password: "" });
+
+    const validate = new Validate(RULES, state);
+    return {
+      state,
+      validate,
+    };
+  },
+  methods: {
+    async submit() {
+      const result = await this.validate.v$.$validate();
+      if (!result) {
+        // notify user form is invalid
+        return;
+      }
+      // perform async actions
+    },
+  },
+});
+</script>
+
 <template>
   <auth-wrapper
-    class="login-view"
     :title="$t('Login')"
     :submit-text="$t('Login')"
     @submit="submit"
   >
     <base-input
       class="mt-3"
-      v-model="email"
+      v-model="state.email"
       :label="$t('Email')"
       model-type="email"
     />
     <error-message
-      v-if="errorByType['email'].message"
-      :text="errorByType['email'].message"
+      v-if="validate.errorByType['email'].message"
+      :text="validate.errorByType['email'].message"
     />
     <base-input
       class="mt-3"
-      v-model="password"
+      v-model="state.password"
       :label="$t('Password')"
       model-type="password"
     />
     <error-message
-      v-if="errorByType['password'].message"
-      :text="errorByType['password'].message"
+      v-if="validate.errorByType['password'].message"
+      :text="validate.errorByType['password'].message"
     />
 
     <template #footer>
@@ -37,54 +77,3 @@
     </template>
   </auth-wrapper>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import AuthWrapper from "@/views/authorization/AuthWrapper.vue";
-import BaseInput from "@/components/fields/BaseInput.vue";
-import { useVuelidate } from "@vuelidate/core";
-import { Validate } from "@/helpers/validate";
-import ErrorMessage from "@/components/ErrorMessage.vue";
-import BaseButton from "@/components/button/BaseButton.vue";
-
-const VALIDATE_FIELDS = Object.freeze({
-  email: "email",
-  password: "password",
-});
-
-export default defineComponent({
-  name: "LoginView",
-  components: { BaseButton, ErrorMessage, BaseInput, AuthWrapper },
-  setup: () => ({
-    v$: useVuelidate(),
-  }),
-  data: () => ({ email: "", password: "" }),
-  validations() {
-    return {
-      email: { required: Validate.required },
-      password: {
-        required: Validate.required,
-        minLength: Validate.minLength(6),
-      },
-    };
-  },
-  computed: {
-    errors() {
-      return Validate.getErrors(this.v$.$errors);
-    },
-    errorByType() {
-      return Validate.getErrorByType(this.errors, VALIDATE_FIELDS);
-    },
-  },
-  methods: {
-    async submit() {
-      const result = await this.v$.$validate();
-      if (!result) {
-        // notify user form is invalid
-        return;
-      }
-      // perform async actions
-    },
-  },
-});
-</script>

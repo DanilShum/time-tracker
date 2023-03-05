@@ -1,20 +1,13 @@
-<template>
-  <div class="calendar"></div>
-</template>
-
 <script>
+import BaseCalendar from "@/components/calendar/BaseCalendar";
 export default {
   name: "CalendarView",
-  components: {},
-  props: {},
-  data: () => ({}),
-  staticData: () => ({}),
-  computed: {},
-  methods: {},
+  components: { BaseCalendar },
 };
 </script>
 
-<style lang="scss">
-.calendar {
-}
-</style>
+<template>
+  <div class="h-screen overflow-hidden">
+    <base-calendar />
+  </div>
+</template>

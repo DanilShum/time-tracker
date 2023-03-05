@@ -1,7 +1,8 @@
 import { i18n } from "@/helpers/i18n";
 import * as validators from "@vuelidate/validators";
-import { ErrorObject } from "@vuelidate/core";
+import { ErrorObject, useVuelidate, Validation } from "@vuelidate/core";
 import { keyBy } from "lodash-es";
+import { Ref } from "vue-demi";
 
 const { createI18nMessage } = validators;
 const withI18nMessage = createI18nMessage({ t: i18n.global.t.bind(i18n) });
@@ -15,11 +16,7 @@ type VErrorObject = {
   [key: string]: VErrorFields | ErrorObject;
 };
 
-type Fields = {
-  [key: string]: string;
-};
-
-export const Validate = {
+export const VRules = {
   required: withI18nMessage(validators.required, {
     messagePath: (e) => e.$validator,
   }),
@@ -27,33 +24,55 @@ export const Validate = {
     withArguments: true,
     messagePath: (e) => e.$validator,
   }),
-
   sameAs: withI18nMessage(validators.sameAs, {
     withArguments: true,
     messagePath: (e) => e.$validator,
   }),
+};
 
-  getEmptyErrors: (fields: Fields): VErrorFields[] =>
-    Object.values(fields).map((field): VErrorFields => {
+export class Validate<R, S extends Record<keyof R, any>> {
+  private validate: Ref<Validation<R, R>>;
+  state: S;
+
+  constructor(rules: R, state: S) {
+    this.state = state;
+    this.validate = useVuelidate(rules, state);
+  }
+
+  get v$(): Validation<R, R> {
+    return this.validate.value;
+  }
+
+  get $errors(): ErrorObject[] {
+    return this.v$.$errors;
+  }
+
+  get emptyErrors(): VErrorFields[] {
+    return this.fields.map((field): VErrorFields => {
       return {
         $property: field,
         message: "",
       };
-    }),
+    });
+  }
 
-  getErrors: (errors: ErrorObject[]): ErrorObject[] => {
-    return errors.map((error) => {
+  get fields(): string[] {
+    return Object.keys(this.state);
+  }
+
+  get errors(): ErrorObject[] {
+    return this.$errors.map((error) => {
       return {
         ...error,
         message: String(error.$message),
       };
     });
-  },
+  }
 
-  getErrorByType(errors: ErrorObject[], fields: Fields): VErrorObject {
+  get errorByType(): VErrorObject {
     return {
-      ...keyBy(Validate.getEmptyErrors(fields), "$property"),
-      ...keyBy(errors, "$property"),
+      ...keyBy(this.emptyErrors, "$property"),
+      ...keyBy(this.errors, "$property"),
     };
-  },
-};
+  }
+}
