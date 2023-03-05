@@ -1,7 +1,3 @@
-<template>
-  <svg-icon v-if="path" :path="path" :size="size" />
-</template>
-
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 
@@ -37,3 +33,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <svg-icon v-if="path" :path="path" :size="size" />
+</template>

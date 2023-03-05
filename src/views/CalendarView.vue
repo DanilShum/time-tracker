@@ -1,9 +1,3 @@
-<template>
-  <div class="calendar">
-    <base-calendar />
-  </div>
-</template>
-
 <script>
 import BaseCalendar from "@/components/calendar/BaseCalendar";
 export default {
@@ -12,9 +6,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.calendar {
-  height: 100vh;
-  overflow: hidden;
-}
-</style>
+<template>
+  <div class="h-screen overflow-hidden">
+    <base-calendar />
+  </div>
+</template>

@@ -117,10 +117,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="p-4 h-full d-flex flex-col box-sizing_bb">
-    <div
-      class="base-calendar__header d-flex d-flex_a-center d-flex_j-between mb-4"
-    >
+  <div class="box-border flex h-full flex-col p-4">
+    <div class="mb-4 flex items-center justify-between">
       <base-button :text="'prev'" secondary @click="goToPrevPeriod" />
       <base-button :text="'next'" secondary @click="goToNextPeriod" />
       <base-button :text="'today'" secondary @click="goToday" />
@@ -141,13 +139,13 @@ export default defineComponent({
       <base-button :text="'list'" secondary @click="changeView('listDay')" />
     </div>
 
-    <div class="base-calendar__table d-flex">
+    <div class="base-calendar__table flex">
       <div v-if="isDayView || isListView" class="base-calendar__left">
         <base-button :text="'создать задачу'" primary color="teal" />
       </div>
       <FullCalendar
         ref="calendar"
-        class="base-calendar"
+        class="base-calendar mx-auto my-0 h-full grow"
         :options="calendarOptions"
       >
         <template v-slot:eventContent="arg">
@@ -164,10 +162,6 @@ export default defineComponent({
   height: calc(100% - 56px);
 }
 .base-calendar {
-  flex-grow: 1;
-  height: 100%;
-  margin: 0 auto;
-
   h2 {
     margin: 0;
     font-size: 16px;
