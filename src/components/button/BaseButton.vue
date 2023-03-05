@@ -1,21 +1,3 @@
-<template>
-  <component
-    :is="tag"
-    class="base-button rounded-1"
-    :class="classes"
-    :disabled="disabled"
-    :type="buttonType"
-    :to="to"
-    v-bind="$attrs"
-  >
-    <slot name="left" />
-    <span v-if="text || $slots.default">
-      <slot>{{ text }}</slot>
-    </span>
-    <slot name="right" />
-  </component>
-</template>
-
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 
@@ -99,9 +81,9 @@ export default defineComponent({
     classes() {
       return {
         "base-button_disabled": this.disabled,
-        "base-button_small": this.small,
-        "base-button_large": this.large,
-        "base-button_block": this.block,
+        "h-8": this.small,
+        "h-12 text-sm font-bold": this.large,
+        "flex w-full": this.block,
         "base-button_icon": this.withIcon,
         "base-button_primary": this.primary,
         "base-button_secondary": this.secondary,
@@ -112,28 +94,28 @@ export default defineComponent({
 });
 </script>
 
+<template>
+  <component
+    :is="tag"
+    class="base-button relative box-border inline-flex h-10 max-w-full cursor-pointer select-none items-center justify-center rounded-4 border-0 text-center align-top text-sm leading-4 no-underline outline-0"
+    :class="classes"
+    :disabled="disabled"
+    :type="buttonType"
+    :to="to"
+    v-bind="$attrs"
+  >
+    <slot name="left" />
+    <span v-if="text || $slots.default">
+      <slot>{{ text }}</slot>
+    </span>
+    <slot name="right" />
+  </component>
+</template>
+
 <style lang="scss">
 .base-button {
-  position: relative;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: inline-flex;
-  vertical-align: top;
-  align-items: center;
-  justify-content: center;
   font-family: $font-family;
-  text-align: center;
-  font-size: 13px;
-  height: 40px;
-  border: 0;
-  outline: none;
-  text-decoration: none;
-  cursor: pointer;
   transition: color 150ms ease-in, background-color 150ms ease-in;
-  user-select: none;
-  span {
-    line-height: 1.1;
-  }
 
   &.base-button_disabled {
     pointer-events: none;
@@ -147,18 +129,6 @@ export default defineComponent({
   &:not(.base-button_icon) {
     padding: 0 1.5em;
   }
-}
-.base-button_block {
-  display: flex;
-  width: 100%;
-}
-.base-button_small {
-  height: 30px;
-}
-.base-button_large {
-  font-weight: $bold-large;
-  font-size: 13px;
-  height: 50px;
 }
 
 @mixin secondary($color: $grey) {
