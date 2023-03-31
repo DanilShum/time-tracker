@@ -10,3 +10,7 @@ confirmPassword: Подтвердить пароль
 required: Поле "@:{property}" обязательно.
 minLength: Поле "@:{property}" содержит значение, но оно короче {min} символов.
 sameAs: Поле "@:{property}" должно совпадать с полем "@:{equalTo}".
+month: месяц
+week: неделя
+day: день
+list: список

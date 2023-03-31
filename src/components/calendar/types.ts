@@ -1,4 +1,4 @@
-import { EventApi, LocaleInput, PluginDef } from "@fullcalendar/core";
+import { LocaleInput, PluginDef } from "@fullcalendar/core";
 import { Id } from "@/service/types";
 
 export interface headerToolbar {
@@ -22,11 +22,4 @@ export interface calendarOptions {
   select: Function;
   eventClick: Function;
   eventsSet: Function;
-}
-
-export interface IData {
-  calendarOptions: calendarOptions;
-  currentEvents: EventApi[];
-  view: string;
-  title: string;
 }

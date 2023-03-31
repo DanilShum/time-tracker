@@ -5,6 +5,7 @@ import BaseInput from "@/components/fields/BaseInput.vue";
 import { Validate, VRules } from "@/helpers/validate";
 import ErrorMessage from "@/components/ErrorMessage.vue";
 import BaseButton from "@/components/button/BaseButton.vue";
+import BaseSpinner from "@/components/Spinner.vue";
 
 const RULES = {
   email: { required: VRules.required },
@@ -16,7 +17,13 @@ const RULES = {
 
 export default defineComponent({
   name: "LoginView",
-  components: { BaseButton, ErrorMessage, BaseInput, AuthWrapper },
+  components: {
+    BaseSpinner,
+    BaseButton,
+    ErrorMessage,
+    BaseInput,
+    AuthWrapper,
+  },
   setup() {
     const state = reactive({ email: "", password: "" });
 
@@ -45,9 +52,11 @@ export default defineComponent({
     :submit-text="$t('Login')"
     @submit="submit"
   >
+    <base-spinner />
     <base-input
       class="mt-3"
       v-model="state.email"
+      underlined
       :label="$t('Email')"
       model-type="email"
     />
