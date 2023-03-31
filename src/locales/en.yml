@@ -10,3 +10,7 @@ confirmPassword: Confirm password
 required: The field "@:{property}" is required.
 minLength: The "@:{property}" field has a value, but it must have a min length of {min}.
 sameAs: The field "@:{property}" must match the "@:{equalTo} field".
+month: month
+week: week
+day: day
+list: list

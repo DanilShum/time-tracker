@@ -8,7 +8,7 @@ const BUTTON_TYPES = {
   submit: "submit",
 };
 
-const COLORS = {
+export const COLORS = {
   gray: "gray",
   blue: "blue",
   teal: "teal",
@@ -16,15 +16,15 @@ const COLORS = {
 };
 
 const BUTTON_KEYS = Object.keys(BUTTON_TYPES);
-const COLOR_KEYS = Object.keys(COLORS);
+export const COLOR_KEYS = Object.keys(COLORS);
 type Type = keyof typeof BUTTON_TYPES;
-type Color = keyof typeof COLORS;
+export type Color = keyof typeof COLORS;
 
 export default defineComponent({
   name: "BaseButton",
   props: {
     text: {
-      type: String,
+      type: [String, Number],
       default: "",
     },
     to: {
@@ -43,7 +43,7 @@ export default defineComponent({
     color: {
       type: String as PropType<Color>,
       default: COLORS.gray,
-      validator: (value: Type) => COLOR_KEYS.includes(value),
+      validator: (value: Color) => COLOR_KEYS.includes(value),
     },
     withIcon: {
       type: Boolean,

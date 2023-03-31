@@ -12,10 +12,31 @@ import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import { DateInput, EventApi, EventClickArg } from "@fullcalendar/core";
 
 import BaseButton from "@/components/button/BaseButton.vue";
-import { IData } from "./types";
+import { i18n } from "@/helpers/i18n";
+import ButtonSwitcher from "@/components/button/ButtonSwitcher.vue";
+
+const VIEWS = [
+  {
+    value: i18n.global.t("month"),
+    id: "dayGridMonth",
+  },
+  {
+    value: i18n.global.t("week"),
+    id: "timeGridWeek",
+  },
+  {
+    value: i18n.global.t("day"),
+    id: "timeGridDay",
+  },
+  {
+    value: i18n.global.t("list"),
+    id: "listDay",
+  },
+];
 
 export default defineComponent({
   components: {
+    ButtonSwitcher,
     BaseButton,
     FullCalendar,
   },
@@ -24,7 +45,7 @@ export default defineComponent({
 
     return { calendar };
   },
-  data: (vm): IData => ({
+  data: (vm) => ({
     calendarOptions: {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin],
       headerToolbar: false,
@@ -46,9 +67,10 @@ export default defineComponent({
       eventRemove:
       */
     },
-    currentEvents: [],
+    currentEvents: [] as EventApi[],
     view: "dayGridMonth",
     title: "",
+    VIEWS,
   }),
   mounted() {
     this.setTitle();
@@ -63,6 +85,7 @@ export default defineComponent({
   },
   methods: {
     handleDateSelect(selectInfo: DateInput | any): void {
+      this.$emit("select");
       let title = prompt("Please enter a new title for your event");
       let calendarApi = selectInfo.view.calendar;
       calendarApi.unselect(); // clear date selection
@@ -119,24 +142,20 @@ export default defineComponent({
 <template>
   <div class="box-border flex h-full flex-col p-4">
     <div class="mb-4 flex items-center justify-between">
-      <base-button :text="'prev'" secondary @click="goToPrevPeriod" />
-      <base-button :text="'next'" secondary @click="goToNextPeriod" />
-      <base-button :text="'today'" secondary @click="goToday" />
+      <div class="flex items-center">
+        <base-button :text="'prev'" secondary @click="goToPrevPeriod" />
+        <base-button :text="'next'" secondary @click="goToNextPeriod" />
+        <base-button :text="'today'" secondary @click="goToday" />
+      </div>
 
-      <div>{{ title }}</div>
+      <div class="font-bold uppercase">{{ title }}</div>
 
-      <base-button
-        :text="'month'"
-        secondary
-        @click="changeView('dayGridMonth')"
+      <button-switcher
+        :items="VIEWS"
+        :active="view"
+        color="teal"
+        @select="changeView($event.id)"
       />
-      <base-button
-        :text="'week'"
-        secondary
-        @click="changeView('timeGridWeek')"
-      />
-      <base-button :text="'day'" secondary @click="changeView('timeGridDay')" />
-      <base-button :text="'list'" secondary @click="changeView('listDay')" />
     </div>
 
     <div class="base-calendar__table flex">
